@@ -1,0 +1,19 @@
+.nav {
+  background-color: #eeefff;
+  height: 4vh;
+  align-content: center;
+  width: 100%;
+  margin: auto;
+
+  li {
+    align-self: center;
+    display: inline-block;
+    padding: 1vh;
+  }
+  
+  a:hover{
+    text-decoration: underline;
+  }
+
+}
+

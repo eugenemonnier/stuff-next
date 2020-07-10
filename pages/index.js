@@ -4,6 +4,7 @@ import axios from 'axios'
 import Nav from '../components/nav'
 import Item from '../components/item'
 import StuffForm from '../components/form'
+import styles from '../components/sass/indexPage.module.scss'
 
 const url = 'https://my-stuff-api.herokuapp.com/api/v1/stuff/'
 
@@ -21,10 +22,10 @@ export default class Home extends React.Component {
 
   render () {
     return (
-      <div className='container'>
+      <div className='container' className={styles.indexpage}>
         <Nav />
         <h1>My Stuff</h1>
-        <ul>
+        <ul className={styles.listitems}>
           {this.state.stuff.map(stuff => <Item key={stuff.id} stuff={stuff} />)}
         </ul>
         <StuffForm onStuffCreate={this.stuffCreateHandler} />
