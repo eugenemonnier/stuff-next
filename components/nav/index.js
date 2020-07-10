@@ -1,8 +1,16 @@
 import Link from 'next/link'
 
-export default function Nav () {
+import styles from '../sass/nav.module.scss'
+
+export default function Nav (props) {
+  // function getStyle (page) {
+  //   if (page == props.page) {
+  //     return styles.active
+  //   } else return null
+  // }
+
   return (
-    <ul>
+    <ul className={styles.nav}>
       <li>
         <Link href='/'>
           <a>Home</a>
