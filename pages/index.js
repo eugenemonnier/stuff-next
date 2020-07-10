@@ -1,12 +1,14 @@
 import React from 'react'
 import axios from 'axios'
 
-import Head from 'next/head'
+import Nav from '../components/nav'
+import Item from '../components/item'
+import StuffForm from '../components/form'
 
 const url = 'https://my-stuff-api.herokuapp.com/api/v1/stuff/'
 
 export default class Home extends React.Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = { stuff: props.stuff }
   }
@@ -20,11 +22,34 @@ export default class Home extends React.Component {
   render () {
     return (
       <div className='container'>
+        <Nav />
         <h1>My Stuff</h1>
         <ul>
-          {/* {this.state.stuff.map(stuff ->)} */}
+          {this.state.stuff.map(stuff => <Item key={stuff.id} stuff={stuff} />)}
         </ul>
+        <StuffForm onStuffCreate={this.stuffCreateHandler} />
+
+        <style jsx global>{`
+                html,
+                body {
+                padding: 0;
+                margin: 0;
+                font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+                    Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+                    sans-serif;
+                }
+                * {
+                box-sizing: border-box;
+                }
+            `}
+        </style>
       </div>
     )
   }
+}
+
+export async function getStaticProps () {
+  const response = await fetch(url)
+  const stuff = await response.json()
+  return { props: { stuff: stuff } }
 }
